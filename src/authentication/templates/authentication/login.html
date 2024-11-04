@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+<h1> Login Page</h1>
+
+<form method="post" style="width:10%" align ="center">
+	{% csrf_token %}
+	{{form.as_p}}
+	<input type="submit" value="Login">
+</form>
+<P>Dont  have an account? <a href="{% url 'register' %}">Register</a></P>
+</body>
+</html>
+
+
+<form method="post" style="width:10%" align="center">
+	{% csrf_token %}
+	<p>
+    <label for="id_username">Username:</label>
+    <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150"  id="id_username">
+
+
+  </p>
+
+
+  <p>
+    <label for="id_password">Password:</label>
+    <input type="password" name="password" autocomplete="current-password" required="" id="id_password">
+
+
+
+
+  </p>
+	<input type="submit" value="Login">
+</form>

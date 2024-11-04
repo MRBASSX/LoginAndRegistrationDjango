@@ -1,0 +1,33 @@
+{% extends 'product/layout.html' %}
+
+{% block title %}
+    Shop
+{% endblock %}
+
+{% block content %}
+<hr>
+<section>
+	<h1> Latest Phone</h1>
+	<main class="main" >
+
+
+      {% for myproduct in product %}
+		<a href="/product-detail/{{myproduct.id}}">
+			<div class="box">
+				<small><a href="/add-cart/{{myproduct.id}}" style="color:white">addCart</a></small>
+			<img src="{{myproduct.image.url}}" height="100%"  width="100%"  class="image">
+			<small>{{myproduct.name}}</small>
+			<small>$ {{myproduct.price}}</small>
+		</div>
+		</a>
+		{% endfor %}
+	</main>
+	<hr>
+</section>
+
+{% endblock %}
+
+
+
+
+

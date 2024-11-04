@@ -1,0 +1,209 @@
+              USING TABLE
+
+
+IN MODEL
+
+from django.db import models
+from django.contrib.auth.models import User
+class Product(models.Model):
+	name = models.CharField(max_length=100)
+	description = models.TextField(null=True)
+	price = models.DecimalField(max_digits=10, decimal_places=2)
+	image = models.ImageField(upload_to='products/')
+
+	def __str__(self):
+		return self.name
+
+class CartItem(models.Model):
+	product = models.ForeignKey(Product, on_delete=models.CASCADE)
+	quantity = models.PositiveIntegerField(default=0)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	date_added = models.DateTimeField(auto_now_add=True)
+
+	def __str__(self):
+		return f'{self.quantity} x {self.product.name}'
+
+
+
+
+IN VIEW
+from django.shortcuts import render, redirect
+from .models import Product, CartItem
+
+def product_list(request):
+	products = Product.objects.all()
+	return render(request, 'myapp/index.html', {'products': products})
+
+def view_cart(request):
+	cart_items = CartItem.objects.filter(user=request.user)
+	total_price = sum(item.product.price * item.quantity for item in cart_items)
+	return render(request, 'myapp/cart.html', {'cart_items': cart_items, 'total_price': total_price})
+
+def add_to_cart(request, product_id):
+	product = Product.objects.get(id=product_id)
+	cart_item, created = CartItem.objects.get_or_create(product=product,user=request.user)
+	cart_item.quantity += 1
+	cart_item.save()
+	return redirect('cart:view_cart')
+
+def remove_from_cart(request, item_id):
+	cart_item = CartItem.objects.get(id=item_id)
+	cart_item.delete()
+	return redirect('cart:view_cart')
+
+def update(request, item_id):
+         if request.method =="POST":
+
+            x = request.POST['quantity']
+
+	    y = request.POST['product_id']# Using for checking if the quantity is there
+            if(y){
+
+	   cart_item = CartItem.objects.get(id=item_id)
+	   cart_item.firstname =x
+	   cart_item.save()
+
+           }
+	   return redirect('cart:view_cart')
+
+
+
+
+                                                      USING SESSION
+
+
+METHOD ONE
+
+# Add an item to the cart
+item = {'name': 'Book', 'price': 10.99}
+request.session['cart'].append(item)
+
+
+# Retrieve the items in the cart
+items = request.session['cart']
+
+
+# Remove an item from the cart
+request.session['cart'].remove(item)
+
+# Clear the cart
+request.session['cart'] = []
+
+
+
+METHOD TWO
+
+# Add an item to the cart
+request.session['cart'][product_id] = quantity
+
+# Retrieve the items in the cart
+items = request.session['cart']
+
+# Remove an item from the cart
+del request.session['cart'][product_id]
+
+# Clear the cart
+request.session['cart'] = {}
+
+
+
+<form method="post" action="{% url 'form_view' %}">
+    {% csrf_token %}
+    <label for="field1">Field 1:</label>
+    <input type="text" name="quantity" value="{{ request.session.form_data.quantity }}">
+    <br>
+    <label for="field2">Field 2:</label>
+    <input type="text" name="product_id" value="{{ request.session.form_data.product_id }}">
+    <br>
+    ...
+    <input type="submit" value="SaveQuantity">
+</form>
+
+# Validate the data that the user has entered in the form
+form_data = request.session['form_data']
+if form_data['field1'] == '':
+    # Display an error message
+elif form_data['field2'] == '':
+    # Display an error message
+else:
+    # Save the form data to the database
+
+
+
+
+return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
+
+function PlayTest(event){
+                          if({{myproduct.product.quantity}}){
+
+                         document.getElementById('quantity').style.background = 'yellow';
+                         event.preventDefault;
+                         quantity =  document.getElementById('quantity').value;
+                         document.getElementById('quantity').value = quantity;
+
+                         window.location.replace('/Update_Cart/{{myproduct.product.id}}')
+
+                        } else{
+                        document.getElementById('quantity').style.background = 'brown';
+
+                        }
+
+                        }
+
+
+           <form  action="" method="post" id="save" >
+                        {% csrf_token %}
+
+<!--                    <select name="quantity">-->
+<!--                         <option selected>{{myproduct.quantity}}</option>-->
+<!--                       {% for Q in myproduct.Total_quantity %}-->
+<!--                        <option>{{Q}}</option>-->
+<!--                        {% endfor %}-->
+<!--                        </select>-->
+
+                        <input type="number"  name="quantity"    onchange="
+                        document.getElementById('save').action ='/Update_Cart/{{myproduct.product.id}}';
+                        document.getElementById('save').submit()"  required>
+
+<!--                        <input type="submit" value="SaveChanges"  >-->
+                   </form>
+
+onchange="
+                        document.getElementById('save').action ='/Update_Cart/{{myproduct.product.id}}';
+                        document.getElementById('save').submit()"
+
+
+
+      def Update_Cart_Sub(request, product_id):
+    if request.user.is_authenticated:
+        # Using  product_id to get the exact product
+        product = Product.objects.get(id=product_id)
+
+        # Create a new cart in the cart Table
+        Added_cart, done = Cart.objects.get_or_create(product=product, user=request.user)
+        Added_cart.quantity -= 1
+        Added_cart.save()
+
+        # if int(request.POST['quantity']) <= 0 or product.quantity < (int(request.POST['quantity'])):
+        #     Added_cart.quantity = 1
+        #     Added_cart.save()
+        # else:
+        #     Added_cart.quantity = int(request.POST['quantity'])
+        #     Added_cart.save()
+
+        # Retrieve The number of cart related to a particular user
+
+        Added_cart = Cart.objects.filter(user=request.user).count()
+
+        # Save cart Count to a session
+        request.session['cart'] = Added_cart
+        request.session.modified = True
+        return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
+
+    else:
+
+        return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
+
+
+
+

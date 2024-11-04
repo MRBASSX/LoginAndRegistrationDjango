@@ -1,0 +1,27 @@
+{% extends 'product/layout.html' %}
+
+{%  block title %}
+
+{% endblock %}
+
+{% block content %}
+	<hr>
+<main class="main" >
+
+
+
+	<img src="{{imagelist.image1.url}}" height="100%"  width="20%"  class="image">
+	<img src="{{imagelist.image2.url}}" height="100%"  width="20%"  class="image">
+	<img src="{{imagelist.image3.url}}" height="100%"  width="20%"  class="image">
+
+
+		<a href="/show/{{product.id}}">
+			<div class="box">
+			<img src="{{def_product.image.url}}" height="100%"  width="100%"  class="image">
+			<small>{{def_product.name}}</small>
+			<small>$ {{def_product.price}}</small>
+		</div>
+		</a>
+	</main>
+	<hr>
+{% endblock %}

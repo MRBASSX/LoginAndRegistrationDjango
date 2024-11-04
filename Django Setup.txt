@@ -1,0 +1,417 @@
+First make sure python 2.7 or 3.6 or Higher
+pip install virtualenv
+virtualenv ecommer
+ecommer\Scripts\activate
+pip install django
+
+
+
+Creating Project
+
+django-admin startproject  crude_system 
+python manage.py migrate
+python manage.py runserver
+
+
+Creating New App in the Source(src)
+
+python manage.py startapp bass
+
+
+python manage.py makemigrations
+python manage.py migrate
+
+Creating DashBoard
+
+python manage.py createsuperuser
+
+
+Adding MysqlConnection
+
+
+
+pip install mysqlclient
+pip install mysql-connector-python
+
+ DATABASES = {
+    'default': {
+'ENGINE': 'django.db.backends.mysql',
+'NAME':  'pythondb',
+'USER':  'root',
+'PASSWORD':  '',
+'HOST':  '127.0.0.1',
+'PORT':  '3306',
+    }
+}
+  
+python manage.py makemigrations
+python manage.py migrate
+
+
+
+
+
+
+from django import forms
+from .models import PostModel
+
+
+# creating a form
+class PostForm(forms.ModelForm):
+
+	# create meta class
+	class Meta:
+		# specify model to be used
+		model =PostModel
+
+		# specify fields to be used
+		fields = [
+			"firstname",
+			"surname"]
+		# add Bootstrap
+		widgets = {
+			'email' : forms.TextInput(attrs= {'placeholder':'user', 'style':'width:100%','class':"form-control"}),
+			'first_name' : forms.TextInput(attrs= {'placeholder':'user', 'style':'width:100%','class':"form-control"}),
+			'surname' : forms.TextInput(attrs= {'placeholder':'user', 'style':'width:100%','class':"form-control"}),
+			'address' : forms.TextInput(attrs= {'placeholder':'user', 'style':'width:100%','class':"form-control"}),
+			'last_name' : forms.TextInput(attrs= {'placeholder':'user', 'style':'width:100%','class':"form-control"}),
+			}
+		
+
+
+
+<div class="alert alert-danger" role="alert">
+
+Are you sure you want to delete "{{ employee.emp_name }}"?
+
+</div>
+
+<p>
+
+<a href="{% url 'employees-list' %}"> <-- Go back</a>
+
+</p>
+
+Updating Form
+
+# if request.method =="POST":
+	# 	all_post = Employee.objects.get(id=id)
+	# 	form = EmployeeForm(instance=all_post)
+	# 	if form:
+	# 	   form = EmployeeForm(request.POST,instance=all_post)
+	# 	   form.save()
+	# 	   scontent={'all_post':all_post}
+	# 	   return render(request,"employee/show.html/",scontent)
+			
+		
+		
+		
+	   # x = request.POST['firstname']
+	   # y = request.POST['surname']
+	   # all_post = Employee.objects.get(id=id)
+	   # all_post.firstname =x
+	   # all_post.surname = y
+	   # all_post.save();
+	   # scontent={'all_post':all_post}
+	   # return render(request,"employee/show.html/",scontent)
+
+
+
+Saving form
+ if request.method == "POST":
+            form = EmployeeForm(request.POST)
+            if form.is_valid():
+                form.save()   
+            else:
+               form = EmployeeForm()
+
+if request.method == "POST":
+            form = CheckoutForm(request.POST)
+            if form.is_valid():
+                newform = form.save(commit=False)
+				newform.createdDate = timezone.now
+                newform.user = request.user
+                newform.save()   
+            else:
+               form = CheckoutForm()
+
+
+
+Uploading  Images
+
+	   IN SETTINGS
+	   MEDIA_URL = '/media/'
+	   MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+       pip install pillow
+
+	   IN URL
+	   from django.conf import settings
+	   from django.conf.urls.static import static
+       if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+
+	   IN MODEL
+	   title = models.CharField(max_length=12)
+	   image = models.ImageField(null=True,blank=True,upload_to="images/")
+
+
+      IN FORMS
+      from django import forms
+       from .models import PostModel
+    class ImageForm(forms.ModelForm):
+
+	# create meta class
+	class Meta:
+		# specify model to be used
+		model =PostModel
+
+		# specify fields to be used
+		fields = ['title', 'image']
+		# add Bootstrap
+		widget = [
+		forms.TextInput(attr= {'class':'form-control'})
+		]
+
+
+	   IN VIEW
+	   def imageUpload(request):
+	       if request.method == 'POST':
+	            form = ImageForm(request.POST, request.FILES)
+	            if form.is_valid():
+	                form.save()
+	                img = form.instance
+	                 cimage = {"image": img}
+
+     IN HTML
+     <form method="post" enctype= "multipart/form-data">
+     {% csrf_token %}  {{form.as_p}}
+     <button type="button"Upload></button>
+     </form>
+     {% if img_obj %}
+     <h3>Successsfully</h3>
+     <img src="{{img_obj.image.url}}" alt="connect" style="max-height">
+
+      {% if data.image %}
+      <img src="{{data.image.url}}" width="50%" height="50%">
+      <div>{{data.image.url}}</div>
+      {% endif %}
+
+
+
+	 Adding  CSS Files
+
+	 IN SETTINGS
+
+	 STATIC_URL = '/static/'
+     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+     IN APP NAME
+     Create A Folder  App_name/static/App_name/file.css
+
+
+     IN HTML FILE
+      {% load static %}
+
+      <link rel="stylesheet" type="text/css" href="{%  static 'App_name/mystyle.css' %}">
+
+
+
+
+	   Making Query in Django
+
+	   Access database directly
+	   1.django.db.connection
+	   2.connection.cursor()
+	   3.cursor.excute(SQL)
+	   4.cursor.fetchone()
+	   5.cursor.fetchall()
+
+	   EXAMPLE 1
+	   from django.db import connnection
+	   from django.db.models import Q
+
+	   cursor = connection.cursor
+
+	   cursor.execute("SELECT * FROM TABLE_NAME ")
+       R = cursor.fetchone()
+       print(R)
+
+       EXAMPLE 2
+       import mysql.connector
+
+    mydb = mysql.connector.connect(
+        host="127.0.0.1",
+        user="root",
+        password="",
+        database="django"
+    )
+    mycursor = mydb.cursor()
+
+    mycursor.execute("SELECT * FROM post_post")
+
+    myresult = mycursor.fetchall()
+
+    for x in myresult:
+        print(x)
+
+
+       return render(request,'post/testing.html',{'data':R})
+
+     EXAMPLE 3
+     def QueryIsGood(query):
+
+    mydb = mysql.connector.connect(
+        host="127.0.0.1",
+        user="root",
+        password="",
+        database="django"
+    )
+    mycursor = mydb.cursor()
+
+    mycursor.execute(query)
+
+    myresult = mycursor.fetchall()
+    return myresult
+
+         Collection2 = {}
+     # query = QueryIsGood("SELECT * FROM post_post WHERE id=1")
+     # query2 = QueryIsGood2("SELECT * FROM post_post WHERE id=1")
+     # i = 0
+     # for x in query:
+     #        for y in query2 :
+     #              Collection2.__setitem__(query2[i],x[i])
+     #              i = i + 1
+
+
+
+
+
+CRUD
+
+
+Creating 
+
+def add(request):
+	x = request.POST['firstname']
+	y = request.POST['surname']
+	myDATA= Employee(firstname=x,surname=y)
+	myDATA.save()
+	all_post = Employee.objects.all()
+	contents = { 'all_post':all_post }
+	return render(request, "employee/index.html" ,contents)
+	
+def create(request):
+	return render(request, "employee/add.html")
+
+
+
+Reading
+
+def index(request):
+	all_post =Employee.objects.all()
+	contents = { 'all_post':all_post }
+	return render(request, "employee/index.html" ,contents)
+
+def show(request,id):
+	all_post = Employee.objects.get(id=id)
+	scontent={'all_post':all_post}
+	return render(request,"employee/show.html",scontent)
+
+
+Updating
+
+def edit(request,id):
+	all_post = Employee.objects.get(id=id)
+	scontent={'all_post':all_post}
+	return render(request,"employee/edit.html",scontent)
+
+def update(request,id):
+	if request.method =="POST":
+		all_post = Employee.objects.get(id=id)
+		form = EmployeeForm(instance=all_post)
+		if form:
+		   form = EmployeeForm(request.POST,instance=all_post)
+		   form.save()
+		   scontent={'all_post':all_post}
+		   return render(request,"employee/show.html/",scontent)
+
+	   # x = request.POST['firstname']
+	   # y = request.POST['surname']
+	   # all_post = Employee.objects.get(id=id)
+	   # all_post.firstname =x
+	   # all_post.surname = y
+	   # all_post.save();
+	   # scontent={'all_post':all_post}
+	   # return render(request,"employee/show.html/",scontent)
+
+
+Deleting
+
+def delete(request,id):
+	employee = Employee.objects.get(id=id)
+	employee.delete()
+
+
+
+
+
+	   Creating A session in Django And MiddleWare
+
+	   json encode and decode
+
+
+Setup Sending Email In Django
+
+
+IN SETTINGS
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = #sender's email-id
+EMAIL_HOST_PASSWORD = #password associated with above email-id
+
+IN VIEWS
+
+from django.conf import settings
+from django.core.mail import send_mail
+subject = 'welcome to GFG world'
+message = f'Hi {user.username}, thank you for registering in.'
+email_from = settings.EMAIL_HOST_USER
+recipient_list = [user.email, ]
+send_mail( subject, message, email_from, recipient_list )
+
+
+
+Changing The Admin Field Identifier
+
+
+IN SETTINGS
+
+AUTH_USER_MODEL = "myapp.MyUser"
+
+IN MODELS 
+
+from django.contrib.auth.models import AbstractUser
+
+
+class User(AbstractUser):
+    pass
+
+
+
+class MyUser(AbstractBaseUser):
+    identifier = models.CharField(max_length=40, unique=True)
+    ...
+    USERNAME_FIELD = "identifier"
+
+IN ADMIN
+
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from .models import User
+
+admin.site.register(User, UserAdmin)
+

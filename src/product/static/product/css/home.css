@@ -1,0 +1,132 @@
+*{
+	text-decoration: none;
+}
+.nav{
+	display: flex;
+	justify-content:space-between;
+	background-color:lawngreen;
+	height: 50px;
+	position: sticky;
+	top: 0px;
+}
+.nav2{
+	margin-top: 5px;
+	display: flex;
+	justify-content:space-between;
+	background-color:lawngreen;
+	height: 50px;
+}
+
+.ul1 , .ul2{
+	display: flex;
+	list-style: none;
+	justify-content:space-between;
+	width: 200px;
+
+
+}
+
+ .nav ul li a{ color: white; }
+
+ .coverpage{
+ 	display: flex;
+ 	height:460px;
+ 	padding: 10px;
+ 	background-color: lawngreen;
+ }
+ .cover1{
+    height: 450px;
+    width: 50%;
+     margin: 2px;
+    background-color: yellowgreen;
+
+ }
+ .cover2{
+ 	display: flex;
+ 	flex-direction: column;
+    height: 450px;
+    width: 50%;
+   /* background-color:darkgreen;
+*/
+ }
+ .coverI{
+ 	 height: 225px;
+ 	  margin: 2px;
+ 	 background-color:darkgreen;
+ }
+
+ .coverII{
+ 	 height: 225px;
+     margin: 2px;
+ 	 background-color:springgreen;
+ }
+
+.main{
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ height: auto;
+ margin: 10px;
+
+}
+
+.box{
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	background-color: red;
+	color: white;
+    width:270px ;
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid green;
+    border-radius: 1rem;
+
+
+}
+
+.image{
+	height:60%;
+}
+
+
+.footer{
+	display: flex;
+	justify-content: space-around;
+	background: lawngreen;
+   height:300px;
+
+}
+.footer1{
+	display: flex;
+	justify-content: space-around;
+	background: green;
+   height:auto;
+
+}
+
+.footerI{
+
+	line-height: 30px;
+}
+
+.socialbox{
+	background-color: whitesmoke;
+	height:70px;
+	width: 70px;
+	margin: 10px;
+}
+
+.social{
+
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.main>:nth-child(1){
+
+
+	color: red;
+
+
+}

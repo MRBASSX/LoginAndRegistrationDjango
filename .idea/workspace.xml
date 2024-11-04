@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0e84a863-a133-4a4a-858a-7db6e588c569" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="2b0PzfIIjsjgpgG4S6wcEy1eXLk" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Quiz" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\THE-BRAIN\Desktop\LoginAndRegistration\src\product\static\product\js" />
+      <recent name="C:\Users\THE-BRAIN\Desktop\LoginAndRegistration\src\product\static\product\css" />
+      <recent name="C:\Users\THE-BRAIN\Desktop\LoginAndRegistration\src\product\static\product" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\THE-BRAIN\Desktop\LoginAndRegistration\src\product\static\product\css" />
+      <recent name="C:\Users\THE-BRAIN\Desktop\LoginAndRegistration\src\product\static\product" />
+      <recent name="C:\Users\THE-BRAIN\Desktop\LoginAndRegistration\src\checkout\static\checkout" />
+      <recent name="C:\Users\THE-BRAIN\Desktop\LoginAndRegistration\src\checkout\static\checkout\js" />
+      <recent name="C:\Users\THE-BRAIN\Desktop\LoginAndRegistration\src\checkout\static\checkout\css" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0e84a863-a133-4a4a-858a-7db6e588c569" name="Default Changelist" comment="" />
+      <created>1705349287007</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1705349287007</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="449" y="168" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1706211088872">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="449" y="168" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1706211088872" />
+    <state x="446" y="120" key="FileChooserDialogImpl" timestamp="1707685382936">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="446" y="120" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1707685382936" />
+    <state x="330" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1707078308165">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="330" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.728@0.0.1366.728" timestamp="1707078308165" />
+  </component>
+</project>

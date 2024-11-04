@@ -1,0 +1,74 @@
+{% extends 'product/layout.html' %}
+
+{% block title %}
+   Cart
+{% endblock %}
+
+{% block content %}
+<hr>
+<section>
+	<h1> Latest Phone</h1>
+	<main class="main" >
+
+
+         {% if cart %}
+      {% for myproduct in cart %}
+
+
+		<a href="/product-detail/{{myproduct.product.id}}">
+        </a>
+			<div class="box">
+                 <div><img src="{{myproduct.product.image.url}}" height="100%"  width="100%"  class="image"></div>
+                <div>
+                    <form  action="/Update_Cart/{{myproduct.product.id}}" method="post" id="save" >
+                        {% csrf_token %}
+
+<!--                    <select name="quantity">-->
+<!--                         <option selected>{{myproduct.quantity}}</option>-->
+<!--                       {% for Q in myproduct.Total_quantity %}-->
+<!--                        <option>{{Q}}</option>-->
+<!--                        {% endfor %}-->
+<!--                        </select>-->
+
+                        <input type="number"  name="quantity"   value="{{myproduct.quantity}}"    required style="width:15%">
+
+                        <input type="submit" value="Sav"  >
+                   </form>
+
+                     <script>
+
+
+
+
+                      </script>
+
+                    <form action="/Delete_Cart/{{myproduct.product.id}}" method="post" style="margin:20px">
+                        {% csrf_token %}
+                     <input type="submit" value="Delete">
+                    </form>
+                </div>
+
+				<small><a href="" style="color:white"></a></small>
+			<small>Name: {{myproduct.product.name}}</small>
+			<small>Price :$ {{myproduct.product.price}}</small>
+
+                <small>SubTotal price:{{myproduct.Total_cost}}</small>
+
+
+ </div>
+		{% endfor %}
+
+        {% else %}
+        <di>Your Cart is Empty</di>
+        {% endif %}
+
+
+       {% if total %}
+         <div>Grand Total price: {{total}}</div>
+        {% endif %}
+	</main>
+	<hr>
+</section>
+
+
+{% endblock %}

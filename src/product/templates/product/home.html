@@ -1,0 +1,79 @@
+{% extends 'product/layout.html' %}
+ {%  block title %}
+    Home
+   {% endblock %}
+
+{% block content %}
+
+<hr>
+<section>
+	{{request.session.key}}
+	<div class="coverpage">
+		<div class="cover1">
+			<img src="images/image (2).jpg" height="100%"  width="100%" >
+		</div>
+		<div class="cover2">
+
+			<div class="coverI">
+				<img src="images/image (3).jpg" height="100%"  width="100%" >
+			</div>
+			<div class="coverII">
+				<img src="images/image (4).jpg" height="100%"  width="100%" >
+			</div>
+		</div>
+	</div>
+	</section>
+
+	<h1> Latest Phone</h1>
+	<main class="main" >
+      {% for myproduct in Phone %}
+		<a href="/product/product-detail/{{myproduct.id}}">
+			<div class="box">
+				<a href="/add-cart/{{myproduct.id}}" style="color:white">addCart</a></small>
+			<img src="{{myproduct.image.url}}" height="100%"  width="100%"  class="image">
+			<small>{{myproduct.name}}</small>
+			<small>$ {{myproduct.price}}</small>
+				<small><a href="/add-cart/">addCart</a></small>
+		</div>
+		</a>
+		 {% endfor %}
+	</main>
+
+	<hr>
+
+	<h1>Most Popular Laptop</h1>
+	<main class="main" >
+      {% for myproduct in Laptop %}
+		<a href="/product/product-detail/{{myproduct.id}}">
+			<div class="box">
+				<small><a href="/add-cart/{{myproduct.id}}" style="color:white">addCart</a></small>
+			<img src="{{myproduct.image.url}}" height="100%"  width="100%"  class="image">
+			<small>{{myproduct.name}}</small>
+			<small>$ {{myproduct.price}}</small>
+				<small><a href="/add-cart/">addCart</a></small>
+		</div>
+		</a>
+		 {% endfor %}
+	</main>
+
+	<hr>
+<h1> Featured TV</h1>
+	<main class="main" >
+      {% for myproduct in Tv %}
+		<a href="/product/product-detail/{{myproduct.id}}">
+			<div class="box">
+				<small><a href="/add-cart/{{myproduct.id}}" style="color:white">addCart</a></small>
+			<img src="{{myproduct.image.url}}" height="100%"  width="100%"  class="image">
+			<small>{{myproduct.name}}</small>
+			<small>$ {{myproduct.price}}</small>
+
+
+		</div>
+
+		</a>
+
+		 {% endfor %}
+	</main>
+
+{% endblock %}
+

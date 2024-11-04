@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {%  block title %}
+   {% endblock %}
+    </title>
+
+	 <link rel="stylesheet" type="text/css" href="{%  static 'product/css/home.css' %}">
+</head>
+<body>
+<nav class="nav">
+	<img src="Icons/UX-Design-Interview.png" width="10%" height="100%">
+
+	<ul class="ul1">
+		<li><a href="{% url 'home' %}">Home</a></li>
+		<li><a href="/product-list/">Shop</a></li>
+		<li>{% if request.user.is_superuser or request.user.is_staff %}
+            <a href="{% url 'admin' %}">AdminPage</a>
+                 {% endif %}
+</li>
+
+	</ul>
+
+	<ul class="ul2">
+		<li><a href="/home/">Home</a></li>
+		<li><a href="/product-list/">Shop</a></li>
+		<li>{% if request.user.is_authenticated %}
+<h1>{{request.user}}</h1>
+</li>
+<a href="{% url 'logout' %}">Logout</a>
+{% else %}
+<a href="{% url 'login' %}">login</a>
+{% endif %}
+	</ul>
+<a href="/Show_Cart/">
+	{% if request.session.cart %}
+
+     <small style="border:2px solid white; border-radius:1rem; width:19px; font-size:20px; height:19px; margin:10px;">
+	{{ request.session.cart}}
+	</small>
+	<small style="border:2px solid white; border-radius:1rem; width:19px; font-size:20px; height:19px; margin:5px;">
+	{{ request.session.cart}}
+	</small>
+
+	{% else %}
+	<small style="border:2px solid white; border-radius:1rem; width:19px; font-size:20px; height:19px; margin:10px;">
+	0
+	</small>
+
+	{% endif %}
+</a>
+</nav>
+<nav class="nav2">
+	<img src="Icons/UX-Design-Interview.png" width="10%" height="100%">
+
+	<ul class="ul1">
+		<li><a href="/home/">Home</a></li>
+		<li><a href="/product-list/">Shop</a></li>
+		<li><a href="/Show_Cart/">Cart</a></li>
+	</ul>
+
+	<ul class="ul2">
+		<li><a href="/home/">Home</a></li>
+		<li><a href="/product-list/">Shop</a></li>
+		<li><a href="/Show_Cart/">Cart</a></li>
+	</ul>
+
+</nav>
+
+
+   {%  block content %}
+   {% endblock %}
+
+
+
+<footer class="footer1">
+
+	<div class="social">
+		<div class="socialbox">
+		<i><img src="Icons/UX-Design-Interview.png" width="100%" height="100%"></i>
+	</div>
+	<div class="socialbox">
+		<i><img src="Icons/UX-Design-Interview.png" width="100%" height="100%"></i>
+	</div>
+	<div class="socialbox">
+		<i><img src="Icons/UX-Design-Interview.png" width="100%" height="100%"></i>
+	</div>
+	</div>
+
+	<div class="social">
+		<div class="socialbox">
+		<i><img src="Icons/UX-Design-Interview.png" width="100%" height="100%"></i>
+	</div>
+	<div class="socialbox">
+		<i><img src="Icons/UX-Design-Interview.png" width="100%" height="100%"></i>
+	</div>
+	<div class="socialbox">
+		<i><img src="Icons/UX-Design-Interview.png" width="100%" height="100%"></i>
+	</div>
+	</div>
+
+	<div class="social">
+		<div class="socialbox">
+		<i><img src="Icons/UX-Design-Interview.png" width="100%" height="100%"></i>
+	</div>
+	<div class="socialbox">
+		<i><img src="Icons/UX-Design-Interview.png" width="100%" height="100%"></i>
+	</div>
+	<div class="socialbox">
+		<i><img src="Icons/UX-Design-Interview.png" width="100%" height="100%"></i>
+	</div>
+	</div>
+</footer>
+</body>
+</html>
